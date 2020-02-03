@@ -14,6 +14,12 @@ db.getCollection('Restaurants').find({$and:
     {"restaurant_id": {$gt: "400000000"}}]}, // string not int
 {'cuisine': 1, 'name': 1, 'city': 1, 'restaurant_id': 1}).sort({"restaurant_id": -1})
 
+// Ex 5 / is for SQL LIKE operator, /Thai$/ == LIKE '%Thai'
+db.getCollection("Restaurants").find(
+    {$or: [{"name": /Thai$/}, {"address.street": /Street$/}, {"address.zipcode": {$eq: 17988}}]},
+    {"restaurant_id": 1, "address": 1, "name": 1, "city": 1}
+).sort({"restaurant_id": 1})
+
 
 
 
